@@ -8,17 +8,20 @@ First install Docker desktop from this web site:
 
 https://www.docker.com/products/docker-desktop/
 
+# Install Docker and docker compose in Linux 
+
+For docker follow the steps in : https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04
+
+-For docker compose follow the steps in : 
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-es
+
 
 # To execute the docker-compose file:
 
 1. Open the CMD
 2. Go to the folder where is located the docker-compose file
-3. Input this command: docker-compose up
-4. In your web navigator input the next port: 
-    mongo:    http://localhost:8081/
-    mysql:    http://localhost:8077/
-    postgres: http://localhost:8080/
-
+3. Input this command: docker-compose buil
+4. Input this command: docker-compose up
 5. To stop running input this command: docker-compose down
 
 The images created can be seen with this command: docker images
