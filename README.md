@@ -32,5 +32,11 @@ https://hub.docker.com/
 
 Thank you!
 
+# To run the docker compose with the projects:
+
+1. Paste the folders of the projects in each correspnding folder of the repository. 
+2. Make sure the routes of each folder are written relatively to the folder where the docker compose file is.
+3. Compose up the database docker compose file.
+4. Compose up the projects docker compose file.
 
 
