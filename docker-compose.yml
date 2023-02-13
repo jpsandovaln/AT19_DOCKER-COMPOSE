@@ -11,7 +11,7 @@
 #
   
 
-version: '3.1'
+version: '3.8'
 services:
   db:
     image: mysql
@@ -24,9 +24,8 @@ services:
       - "3308:3306"
     expose:
       - "3308"
-    networks:
-      - my_network
-    volume: 
+    network_mode: bridge 
+
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -39,9 +38,33 @@ services:
       - "8080:80"
     expose:
       - "8080"
-    networks:
-      - my_network
+    network_mode: bridge 
+    links: 
+      - db
 
-networks:
-  my_network:
-    external: true
+
+  convfrontend:
+    container_name: convfrontend
+    image: conv_frontend
+    build:
+      context: .
+      dockerfile: AT19_FRONTEND_CONVERT/dockerfile
+    ports:
+      - "5017:5017"
+    network_mode: bridge 
+      
+
+  convbackend:
+    container_name: convbackend
+    image: conv_backend
+    build:
+      context: .
+      dockerfile: AT19_CONVERTER/dockerfile
+    ports:
+      - "5000:5000"
+    network_mode: bridge 
+    depends_on:
+      - db 
+
+
+

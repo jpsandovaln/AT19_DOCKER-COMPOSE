@@ -1,5 +1,5 @@
 #
-# @dockerfile Copyright (c) 2022 Jalasoft.
+# @dockerfile Copyright (c) 2023 Jalasoft.
 # 2643 Av Melchor Perez de Olguin, Colquiri Sud, Cochabamba, Bolivia.
 # All rights reserved.
 #
@@ -25,6 +25,7 @@ COPY . /app
 
 
 RUN apt update
+RUN apt upgrade -y
 RUN pip install flask
 RUN pip install flask-restful
 RUN pip install deepface
@@ -38,7 +39,8 @@ RUN apt-get install -y libxkbcommon-x11-0
 RUN apt-get update && apt-get install -y libgl1
 RUN pip install opencv-python==4.6.0.66
 RUN pip install numpy==1.20.3
-
+RUN pip install pymongo==4.3.3
+RUN pip install zope.interface==5.5.2
 
 EXPOSE 5001
 CMD ["python3", "AT19_MACHINE_LEARNING/MACHINE_LEARNING/src/com/jalasoft/machine_learning/main.py"]
