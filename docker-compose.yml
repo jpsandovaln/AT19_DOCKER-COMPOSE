@@ -65,6 +65,59 @@ services:
     network_mode: bridge 
     depends_on:
       - db 
+  
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+    network_mode: bridge
+  
+
+  mongoadmin:
+    image: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: pass
+      ME_CONFIG_MONGODB_URL: mongodb://127.0.0.1:27017/
+    network_mode: bridge
+    links:
+      - mongodb
+    
+
+  mlfrontend:
+    container_name: mlfrontend
+    image: ml_frontend
+    build:
+      context: .
+      dockerfile: AT19_FRONTEND/dockerfile
+    ports:
+      - "8000:8000"
+    network_mode: bridge
+ 
+ 
+  mlbackend:
+    container_name: mlbackend
+    image: ml_backend
+    build:
+      context: .
+      dockerfile: AT19_MACHINE_LEARNING/dockerfile
+    ports:
+      - "5001:5001"
+    network_mode: bridge 
+    depends_on:
+      - mongodb
+
 
 
 
